@@ -17,7 +17,10 @@ function getMovieWithId(id) {
   // console.log(id);
   return new Promise((resolve, reject) => {
     db.sync().then(() => {
-      movie.findByPk(id).then((data) => resolve((data)))
+      movie.findByPk(id).then((data) => {
+      //  console.log(data)
+        resolve(data);
+      })
         .catch((error) => reject(error));
     });
   });
@@ -89,7 +92,7 @@ function deleteMovie(id) {
   return new Promise((resolve, reject) => {
     db.sync().then(() => {
       // eslint-disable-next-line max-len
-      movie.destroy({ where: { Rank: id } }).then((data) => { console.log(data); resolve(data); }).catch((error) => { reject(error); });
+      movie.destroy({ where: { Rank: id } }).then((data) => { resolve(data); }).catch((error) => { reject(error); });
     });
   });
 }
